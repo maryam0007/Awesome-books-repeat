@@ -8,11 +8,9 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-    - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
-  - [Install](#install)
   - [Usage](#usage)
   - [Deployment](#deployment)
 - [👥 Authors](#authors)
@@ -66,13 +64,17 @@ npm
 
 ### Setup
 
-Clone this repository to your desired folder:
+Clone this repository to your desired folder: To clone a repository from GitHub to your local machine, you can follow these steps:
 
--git clone 
+Open the repository on GitHub that you want to clone.
 
-### Install
-
-Install this project with:
+Click on the green "Code" button on the right side of the screen.
+Select the HTTPS or SSH option to copy the repository URL.
+Open your terminal or command prompt and navigate to the directory where you want to clone the repository.
+Type the following command, replacing with the URL you copied in step 3.
+bash
+Press enter and wait for the repository to finish cloning.
+Once the repository has been cloned, you should see a new directory with the same name as the repository on your local machine.
 
 
 ### Usage
