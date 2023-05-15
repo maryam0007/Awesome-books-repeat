@@ -1,65 +1,22 @@
-const title = document.querySelector('#title');
-const author = document.querySelector('#author');
-const submit = document.querySelector('#submit');
-const container = document.querySelector('.data-container');
-const bookList = document.querySelector('.book-list');
-const addContainer = document.querySelector('.add-new');
-const contactContainer = document.querySelector('.contacts');
-const list = document.querySelector('.list');
-const addNew = document.querySelector('.add');
-const contact = document.querySelector('.contact');
-const dateTime = document.querySelector('.date');
+import Books from './modules/books.js';
+import { displayBooks } from './modules/display.js';
+import { luxon } from './modules/luxon.js';
+import {
+  addContainer,
+  addNew,
+  bookList,
+  contact,
+  contactContainer,
+  container,
+  list,
+  submit,
+  dateTime,
+} from './modules/selector.js';
 
-class Books {
-    books;
-
-    constructor() {
-      this.getFromLocalStorage();
-    }
-
-      setLocalStorage = (newBooks) => localStorage.setItem('books', JSON.stringify(newBooks));
-
-      getFromLocalStorage = () => {
-        this.books = JSON.parse(localStorage.getItem('books')) ?? [];
-      };
-
-      displayBooks = () => {
-        this.getFromLocalStorage();
-        container.innerHTML = '';
-        this.books.forEach((book, i) => {
-          container.innerHTML += `<div class="book">
-              <p><q>${book.title}</q> by ${book.author}</p>
-              <button class="remove btn" id=${i}>Remove</button>
-            </div>`;
-        });
-      };
-
-    addBook = (e) => {
-      e.preventDefault();
-      const newBook = {
-        title: title.value,
-        author: author.value,
-      };
-      this.books.push(newBook);
-      this.clear();
-      this.setLocalStorage(this.books);
-      this.displayBooks();
-    };
-
-      removeBook = (i) => {
-        const filteredBooks = this.books.filter((book) => book !== this.books[i]);
-        this.setLocalStorage(filteredBooks);
-        this.displayBooks();
-      };
-
-      clear = () => {
-        title.value = '';
-        author.value = '';
-      };
-}
 const book = new Books();
+
 document.addEventListener('DOMContentLoaded', () => {
-  book.displayBooks();
+  displayBooks();
 });
 
 submit.addEventListener('click', book.addBook);
@@ -70,6 +27,7 @@ container.addEventListener('click', (e) => {
     book.removeBook(targetId);
   }
 });
+
 list.addEventListener('click', () => {
   bookList.classList.remove('hidden');
   addContainer.classList.add('hidden');
@@ -85,4 +43,12 @@ contact.addEventListener('click', () => {
   addContainer.classList.add('hidden');
   contactContainer.classList.remove('hidden');
 });
-dateTime.textContent = new Date();
+
+const setTime = () => {
+  dateTime.innerHTML = luxon.DateTime.now().toLocaleString(
+    luxon.DateTime.DATETIME_MED_WITH_SECONDS,
+  );
+  setTimeout(setTime, 1000);
+};
+
+setTime();
